@@ -1,0 +1,111 @@
+HR@orcl 25-JAN-18>CREAT TABLE dept
+SP2-0734: unknown command beginning "CREAT TABL..." - rest of line ignored.
+HR@orcl 25-JAN-18>	CREATE TABLE dept
+  2  			(deptno		NUMBER(2),
+  3  			dname		VARCHAR2(14),
+  4  			loc		VARCHAR2(13),
+  5  			creat_date	DATE DEFAULT SYSDATE);
+
+Table created.
+
+HR@orcl 25-JAN-18>DESCRIBE dept
+ Name                                                              Null?    Type
+ ----------------------------------------------------------------- -------- --------------------------------------------
+ DEPTNO                                                                     NUMBER(2)
+ DNAME                                                                      VARCHAR2(14)
+ LOC                                                                        VARCHAR2(13)
+ CREAT_DATE                                                                 DATE
+
+HR@orcl 25-JAN-18>insert into dept(deptno, dname)
+  2  values(10, 'Admin');
+
+1 row created.
+
+HR@orcl 25-JAN-18>SELECT * FROM dept;
+
+    DEPTNO DNAME          LOC           CREAT_DAT                                                                       
+---------- -------------- ------------- ---------                                                                       
+        10 Admin                        25-JAN-18                                                                       
+
+HR@orcl 25-JAN-18>DESC employees
+ Name                                                              Null?    Type
+ ----------------------------------------------------------------- -------- --------------------------------------------
+ EMPLOYEE_ID                                                       NOT NULL NUMBER(6)
+ FIRST_NAME                                                                 VARCHAR2(20)
+ LAST_NAME                                                         NOT NULL VARCHAR2(25)
+ EMAIL                                                             NOT NULL VARCHAR2(25)
+ PHONE_NUMBER                                                               VARCHAR2(20)
+ HIRE_DATE                                                         NOT NULL DATE
+ JOB_ID                                                            NOT NULL VARCHAR2(10)
+ SALARY                                                                     NUMBER(8,2)
+ COMMISSION_PCT                                                             NUMBER(2,2)
+ MANAGER_ID                                                                 NUMBER(6)
+ DEPARTMENT_ID                                                              NUMBER(4)
+
+HR@orcl 25-JAN-18>SELECT employee_id, rowid FROM employees;
+
+EMPLOYEE_ID ROWID                                                                                                       
+----------- ------------------                                                                                          
+        100 AAASNVAAEAAAAJXAAA                                                                                          
+        101 AAASNVAAEAAAAJXAAB                                                                                          
+        102 AAASNVAAEAAAAJXAAC                                                                                          
+        103 AAASNVAAEAAAAJXAAD                                                                                          
+        104 AAASNVAAEAAAAJXAAE                                                                                          
+        107 AAASNVAAEAAAAJXAAH                                                                                          
+        113 AAASNVAAEAAAAJXAAF                                                                                          
+        114 AAASNVAAEAAAAJTAAJ                                                                                          
+        115 AAASNVAAEAAAAJTAAK                                                                                          
+        124 AAASNVAAEAAAAJXAAY                                                                                          
+        141 AAASNVAAEAAAAJXAAp                                                                                          
+
+EMPLOYEE_ID ROWID                                                                                                       
+----------- ------------------                                                                                          
+        142 AAASNVAAEAAAAJXAAq                                                                                          
+        143 AAASNVAAEAAAAJXAAr                                                                                          
+        144 AAASNVAAEAAAAJXAAs                                                                                          
+        149 AAASNVAAEAAAAJXAAx                                                                                          
+        174 AAASNVAAEAAAAJXABK                                                                                          
+        176 AAASNVAAEAAAAJXABM                                                                                          
+        178 AAASNVAAEAAAAJXABO                                                                                          
+        200 AAASNVAAEAAAAJTAAC                                                                                          
+        201 AAASNVAAEAAAAJTAAD                                                                                          
+        202 AAASNVAAEAAAAJTAAE                                                                                          
+        205 AAASNVAAEAAAAJTAAH                                                                                          
+
+EMPLOYEE_ID ROWID                                                                                                       
+----------- ------------------                                                                                          
+        206 AAASNVAAEAAAAJTAAI                                                                                          
+
+23 rows selected.
+
+HR@orcl 25-JAN-18>SELECT employee_id, hire_date, rowid
+  2  FROM employees
+  3  WHERE employee_id IN (114, 115);
+
+EMPLOYEE_ID HIRE_DATE ROWID                                                                                             
+----------- --------- ------------------                                                                                
+        114 02-MAR-99 AAASNVAAEAAAAJTAAJ                                                                                
+        115 02-MAR-99 AAASNVAAEAAAAJTAAK                                                                                
+
+HR@orcl 25-JAN-18>delete from employees
+  2  where rowid = 'AAASNVAAEAAAAJTAAK';
+
+1 row deleted.
+
+HR@orcl 25-JAN-18>commit;
+
+Commit complete.
+
+HR@orcl 25-JAN-18>select sysdate from dual;
+
+SYSDATE                                                                                                                 
+---------                                                                                                               
+25-JAN-18                                                                                                               
+
+HR@orcl 25-JAN-18>select systimestamp from dual;
+
+SYSTIMESTAMP                                                                                                            
+---------------------------------------------------------------------------                                             
+25-JAN-18 05.01.02.093477 PM +09:00                                                                                     
+
+HR@orcl 25-JAN-18>exit
